@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina Principal</title>
+</head>
+<body>
+
+    <h1>Listado Startups</h1>
+
+    {%for startup in startups %}
+        <h2>{{startup.nombre}}</h2>
+        <h3>Proveedores:</h3>
+         <ul>{% for p in startup.proveedores.all %}
+         
+           <li>{{ p.id }} - {{ p.nombre }}</li>
+            
+    {% endfor %}</ul>
+    {% endfor %}
+
+    {% if  messages %}
+    {% for message in messages %}
+        <h5 class="{{message.tags}}">{{message | safe}}</h5>
+    {% endfor %}
+        
+    {% endif %}
+
+    <h3>¿Qué servicio/proveedor/herramienta quieres dar de alta?</h3>
+
+    <form action="." method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form1.as_p}}
+        <input type="hidden" id="formType" name="formType" value="servicio">
+        <input class="button-primary" type="submit" value="¡Compártelo!">
+    </form>
+
+    <h3>¿Eres una Startup? ¡Date de alta!</h3>
+
+    <form action="." method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form2.as_p}}
+        <input type="hidden" id="formType" name="formType" value="startup">
+        <input class="button-primary" type="submit" value="¡Darme de Alta!">
+    </form>
+
+    {% if message %}
+    {% for message in messages %}
+        <h5 class="{{message.tags}}">{{message | safe}}</h5>
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>
