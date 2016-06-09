@@ -23,6 +23,11 @@ urlpatterns = [
     # url(r'^categorias/', include('categorias.urls', namespace="categorias")),
     url(r'facebookbot/',csrf_exempt(FacebookBotView.as_view()), name="facebookbot"),
     url(r'^ver-proveedor/', ProveView.as_view(), name="proveview"),
+    #API
+    url(r'^api/',
+        include('proveedores.api.urls', namespace="api")),
     url(r'^', HomeView.as_view(), name="homeview"),
+
+    
     
 ]
