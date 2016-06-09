@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'proveedores',
     'rest_framework',
+    'django.contrib.algoliasearch',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -128,3 +129,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+ALGOLIA = {
+    'APPLICATION_ID': "O80RPQHCXY",
+    'API_KEY': "921726e718a0ae434ba52e6904caa6c4"
+}

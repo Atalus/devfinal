@@ -47,13 +47,6 @@ class ProveView(View):
         }
         return render(request, template_name, context)
 
-
-#class HomeStartups(View):
-#    def get(self, request):
-#        template_name = "startups/startups.html"
-#        form1 = StartupForm()
-#        startups = 
-
 class FacebookBotView(View):
     def get(self, request):
         print(request.GET)
@@ -64,3 +57,6 @@ class FacebookBotView(View):
     @method_decorator(csrf_exempt)
     def post(self, request):
         print(request.POST)
+
+class BuscadorView(TemplateView):
+    template_name = 'proveedores/buscador.html'

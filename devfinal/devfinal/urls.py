@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from proveedores.views import HomeView, FacebookBotView, ProveView
+from proveedores.views import HomeView, FacebookBotView, ProveView, BuscadorView
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
@@ -23,6 +23,6 @@ urlpatterns = [
     # url(r'^categorias/', include('categorias.urls', namespace="categorias")),
     url(r'facebookbot/',csrf_exempt(FacebookBotView.as_view()), name="facebookbot"),
     url(r'^ver-proveedor/', ProveView.as_view(), name="proveview"),
+    url(r'^buscador/', BuscadorView.as_view(), name="buscador"),
     url(r'^', HomeView.as_view(), name="homeview"),
-    
 ]
