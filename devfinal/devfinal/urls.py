@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from proveedores.views import HomeView, FacebookBotView, ProveView, BuscadorView
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -27,7 +29,6 @@ urlpatterns = [
     #API
     url(r'^api/',
         include('proveedores.api.urls', namespace="api")),
-    url(r'^', HomeView.as_view(), name="homeview"),
+    url(r'^$', HomeView.as_view(), name="homeview"), 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-    
-]

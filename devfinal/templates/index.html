@@ -6,16 +6,118 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>Bojol</title>
+    <title>StartupBox.Mx</title>
     
     <link rel="stylesheet" type="text/css" href="{%static 'bootstrap-3.3.6-dist/css/bootstrap.min.css'%}">
     <link rel="stylesheet" type="text/css" href="{%static 'bootstrap-3.3.6-dist/css/styles.css'%}">
     <link rel="icon" type="image/ico" href="{%static 'img/logonostro.png'%}">
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.jquery.min.js"></script>
+        <script   src="http://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAg_rOU_onzWFQN4xjY-P524q5KL-kgfr0"
+  type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+
+    
+});
+function closeproveedor(event){
+        
+        $("#layer-proveedor").hide();
+
+    }
+function showProv(idProv){
+     $("#layer-proveedor").show();
+     $.ajax({url: 'http://127.0.0.1:8000/api/prov/'+ idProv +'/',
+                        type: 'get',
+                      success: function(response) 
+                        {
+                            console.log(response);
+                            $("#nombrelayer").html(response.nombre);
+                            $("#descripcion").html(response.descripcion);
+                            $("#urllayer").attr("href", response.pagina_web);
+                            $("#logoLayer").attr("src", response.logo);
+
+    
+                        },
+                         headers: {
+            Authorization: 'Token 529f4a946694d0aa070aae76575426402dd20829'
+        }
+                    });
+}
+
+
+ var locations = [
+        ['servicio', 19.425063, -99.191899]
+        ]
+     
+    var  mapa;
+    google.maps.event.addDomListener(window,'load',dibujarMapa);
+    function dibujarMapa(){
+        var opcionesMapa={
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        mapa = new google.maps.Map(document.getElementById('google_canvas'),opcionesMapa);
+         var infowindow = new google.maps.InfoWindow();
+         var marker, i;
+
+var iconBase = 'img/';
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: mapa,
+         icon: iconBase + 'geolocate.png'
+      });
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(mapa, marker);
+        }
+      })(marker, i));
+    }
+       
+    }
+    
+    </script>
+<style>
+.icon-close {
+    width: 35px;
+    height: 36px;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}
+</style>
 </head>
 <body class="col-md-12">
+<div id="layer-proveedor" style="position:fixed; top:10%; left:10%; z-index:4;
+background: #FFF; border: 1px solid; border-color: #000000; width: 80%; height: 85%; display: none;
+"><img onclick="closeproveedor()" class="icon-close" src="static/img/close-button.png" alt="close">
+        <form>
+             <fieldset>
+              <legend>Categoría o servicio</legend>
+                <div class="col-lg-6 col-sm-6" class="info-servicio">
+                    <h2 id="nombrelayer"></h2>
+                    <pre>Espacios de trabajo compartidos</pre>
+                    <p id="descripcion"></p>
+                    <div style="width: 200px; height: 200px" id="google_canvas"></div>
+                    <a target="_blank" id="urllayer" href="">Ver sitio web</a>
+                </div>
 
+                <div>
+                    <img class="pop-div_logo" id="logoLayer" src="">
+                </div>
+
+               
+            
+            
+             </fieldset>
+            </form>
+
+
+
+</div>
     <header>
         <form>
             <div id="logoproyecto">
@@ -43,114 +145,58 @@
     </header>
 
     <main>
-        
+         
         <!-- Seccion Startups -->
         <div class="row">
+
+
+
         <div class="col-md-12" class="section_1">
-            <section class="col-xs-6 col-sm-4 col-md-3">
-                <img class="logo_startup" src="{%static 'img/logo-centraal.png'%}">
-                    <article>
-                        <a href="#">Servicio 1</a>
-                            <br>
-                        <a href="#">Servicio 2</a>
-                            <br>
-                        <a href="#">Servicio 3</a>
-                    </article>
-            </section>
 
-            <section class="col-xs-6 col-sm-4 col-md-3">
-                <img class="logo_startup" src="{%static 'img/logoStartupLab.png'%}">
-                    <article>
-                        <a href="#">Servicio 1</a>
-                            <br>
-                        <a href="#">Servicio 2</a>
-                            <br>
-                        <a href="#">Servicio 3</a>
-                    </article>
-            </section>
+         {%for startup in startups %}
 
-            <section class="col-xs-6 col-sm-4 col-md-3">
-                <img class="logo_startup" src="{%static 'img/logorappi.jpeg'%}">
+          <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="media/{{startup.logo}}"">
+                <h2>{{startup.nombre}}</h2>
                     <article>
-                        <a href="#">Servicio 1</a>
+                    <ul>
+        {% for p in startup.proveedores.all %}
+         <a onclick="showProv({{ p.id }})"  href="#">{{ p.nombre }}</a>
                             <br>
-                        <a href="#">Servicio 2</a>
-                            <br>
-                        <a href="#">Servicio 3</a>
+          
+            
+    {% endfor %}
+    </ul>
+                       
                     </article>
             </section>
+    {% endfor %}
+        
 
-            <section class="col-xs-6 col-sm-4 col-md-3">
-                <img class="logo_startup" src="{%static 'img/logo-unikodf.png'%}">
-                    <article>
-                        <a href="#">Servicio 1</a>
-                            <br>
-                        <a href="#">Servicio 2</a>
-                            <br>
-                        <a href="#">Servicio 3</a>
-                    </article>
-            </section>
+         
         </div>
             
             <!--Seccion 2 de Listas-->
 
-<div class="col-md-12" class="section_2">
-            <section class="col-xs-6 col-sm-4 col-md-3">
-                <img class="logo_startup" src="{%static 'img/logoWayra.jpg'%}">
-                    <article>
-                        <a href="#">Servicio 1</a>
-                            <br>
-                        <a href="#">Servicio 2</a>
-                            <br>
-                        <a href="#">Servicio 3</a>
-                    </article>
-            </section>
 
-            <section class="col-xs-6 col-sm-4 col-md-3">
-                <img class="logo_startup" src="{%static 'img/logorappi.jpeg'%}">
-                    <article>
-                        <a href="#">Servicio 1</a>
-                            <br>
-                        <a href="#">Servicio 2</a>
-                            <br>
-                        <a href="#">Servicio 3</a>
-                    </article>
-            </section>
-
-            <section class="col-xs-6 col-sm-4 col-md-3">
-                <img class="logo_startup" src="{%static 'img/logoDev.png'%}">
-
-                    <article>
-                        <a href="#">Servicio 1</a>
-                            <br>
-                        <a href="#">Servicio 2</a>
-                            <br>
-                        <a href="#">Servicio 3</a>
-                    </article>
-            </section>
-
-            <section class="col-xs-6 col-sm-4 col-md-3">
-                <img class="logo_startup" src="{%static 'img/logocentral.png'%}">
-
-                    <article>
-                        <a href="#">Servicio 1</a>
-                            <br>
-                        <a href="#">Servicio 2</a>
-                            <br>
-                        <a href="#">Servicio 3</a>
-                    </article>
-            </section>
-        </div>
     </div>    
-    <footer>
-        
-
-
+    <style>
+.main-footer {
+    background: #d9e4ea;
+    padding: 2em 0;
+    margin-top: 30px;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+}
+    </style>
+<footer class="main-footer">
+        <span>&copy;2016 DevF - StartUpBox Mx</span>
     </footer>
 
 
 
-</body>
 
     <script type="text/javascript" src="js/bootstrap.js"></script>
 
