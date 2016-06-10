@@ -1,0 +1,136 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+/**header**/
+header {
+	width: 100%;
+	height: 100%;
+	margin-top: -1%;
+	margin-bottom: 5%;
+	text-align: center;
+}
+
+#logoproyecto{
+	width: 100%;
+	text-align: center;
+}
+.nuestrologo{
+	width: 10%;
+	text-align: center;
+}
+#botonesSeleccion{
+	text-align: center; 
+}
+.checkbox_ubicacion{
+	width: 100%;
+	margin-top: 1%;
+}	
+.ubicacion{
+	margin-top: 10%;
+}
+.busqueda{
+	width: 30%;
+	margin-top: 1%;
+	text-align: center;
+	border-width: 3px;
+	border-radius: 15px;
+}
+.boton-buscar{
+	width: 100px;
+	font-size: 14px;
+	border-radius: 0%;
+	border-width: 3px;
+	background-color: white;
+
+}
+.contenido{
+	margin-top: 3;
+}
+
+
+/**body**/
+
+/*Contenido*/
+
+body{
+	width: 100%;
+    text-align: center;
+    background-color:  white;
+    font-family:'Montserrat', sans-serif,fantasy;
+}
+div.section_1{
+	margin-top: 20px;
+    text-align: center;
+}
+img{
+    text-align: center;
+    width: 50%;
+    
+    height:115PX;
+    padding: 5px;
+}
+section.logo_startup img{	
+    text-align: center;
+    display: block;
+}
+#logo-vuelax{
+	margin-top: 11%;
+}
+#logo-vuelax img{
+	margin-top: -5%;
+}
+.link_startup a{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+}
+section article{
+	text-align: justify;
+    width: 100%;
+    margin-left: 40%;
+    padding-top: 5px;
+    margin-top: 10px;
+}
+.section_2{
+	margin-top: 30%;
+}
+<<<<<<< HEAD
+/**footer**/
+
+/**pop**/
+.body-pop{
+	width: 100%;
+	height: 100%;
+}
+.pop-div_logo{
+	width: 25%;
+	height: 60%;
+}
+.pop-mapa{
+	width: 50%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+#pop-startups_amigas{
+	width: 50%;
+    text-align: center;
+    margin-left: 55%;
+    margin-top: -25%;
+}
+.lista{
+	text-align: justify;
+	margin-top: 5%;
+	margin-left: 10%;
+}
+
+
+
+=======
+section{
+    margin-top: 15px;
+}
+>>>>>>> 90201f45ec752fcdea9d2154fe6ace9b46b31b64

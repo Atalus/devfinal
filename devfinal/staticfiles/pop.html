@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8"/>	
+
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+		<title>Pop Bojol</title>
+    
+			<link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
+  			<link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/styles.css">
+  			<link rel="icon" type="image/ico" href="img/logonostro.png">
+		</head>
+		<body class="body-pop">
+			<form>
+			 <fieldset>
+			  <legend>Categoría o servicio</legend>
+				<div class="col-lg-6 col-sm-6" class="info-servicio">
+					<h2>Centraal</h2>
+					<pre>Espacios de trabajo compartidos</pre>
+					<p>Nuestra combinación de espacios innovadores alrededor de una comunidad permitirán que trabajes de una forma única. Nuestros espacios están diseñados para fomentar la creatividad, el aprendizaje, el flujo de ideas entre miembros de un equipo y la interacción con la Comunidad centraal</p>
+					<pre></pre>
+					<a href="http://centraal.com/">www.centraal.com</a>
+				</div>
+
+				<div>
+					<img class="pop-div_logo" src="img/logo-centraal.png">
+				</div>
+
+				<div class="pop-mapa">
+					<script type="text/javascript">
+						//<![CDATA[  
+						google.load('maps', '2' {callback:simple3});var map;	
+						function simple3(){	
+						if (GBrowserIsCompatible()) { 
+						function createMarker(point,html) {
+						var marker = new GMarker(point);
+						GEvent.addListener(marker, "click", function() {
+						marker.openInfoWindowHtml(html);});
+						return marker;}			
+						var map = new GMap2(document.getElementById("map3"));
+						map.addControl(new GLargeMapControl());
+						map.addControl(new GMapTypeControl());	  
+						map.setCenter(new GLatLng(23.1311,-82.3726),13);}	  
+						var point = new GLatLng(23.1351,-82.3598);
+						var marker = createMarker(point,'<div style="width:240px">El Capitolio de la Habana <a href="http://norfipc.com">Pagina web<\/a> con mas información<\/div>')
+						map.addOverlay(marker);
+						var point = new GLatLng(23.1368,-82.3816);
+						var marker = createMarker(point,'La Universidad de la Habana')
+						map.addOverlay(marker);}
+						window.onload=function(){simple3();}
+						//]]>
+					</script>
+					<div id="map3" style="width:360px;height:200px;border:2px solid violet;" class="div-mapa"></div>
+				</div>
+			
+			<div class="col-lg-6 col-sm-6" id="pop-startups_amigas">
+				
+				<div>
+					<h3>Startups Amigas</h3>
+					<!--
+						borde-color:black 1px;
+					-->
+					<ul class="lista">
+						<li>Dev.F</li>
+						<li>Vuelax</li>
+						<li>Rappi</li>
+					</ul>
+				</div>
+			</div>
+			 </fieldset>
+			</form>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+
+	<script type="text/javascript" src="js/scripts.js"></script>
+
+		</body>
+	</html>
