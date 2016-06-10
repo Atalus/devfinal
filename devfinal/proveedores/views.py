@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 class HomeView(View):
     def get(self, request):
-        template_name = "proveedores/proveedores.html"
+        template_name = "proveedores/home.html"
         form1 = ProveedorForm()
         form2 = StartupForm()
         provedores = Proveedor.objects.all()

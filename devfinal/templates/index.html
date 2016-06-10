@@ -1,0 +1,211 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="es">
+<head>  
+    <meta charset="utf-8"/> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Bojol</title>
+    
+    <link rel="stylesheet" type="text/css" href="{%static 'bootstrap-3.3.6-dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'bootstrap-3.3.6-dist/css/styles.css'%}">
+    <link rel="icon" type="image/ico" href="{%static 'img/logonostro.png'%}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.jquery.min.js"></script>
+</head>
+<body class="col-md-12">
+
+    <header>
+        <form>
+            <div id="logoproyecto">
+                <img class="nuestrologo" src="{%static 'img/logonostro.png'%}">
+            </div>
+
+            <div id="botonesSeleccion" class="cols-12" class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active">
+                    <input type="checkbox" autocomplete="off" checked> Startups
+                </label>
+                        
+                <label class="btn btn-primary">
+                    <input type="checkbox" autocomplete="off"> Categorías
+                </label>
+            </div>
+            <div class="checkbox_ubicacion">
+                <input class="ubicacion" name="ubicacion" type="checkbox" />Ubicación actual
+            </div>
+
+            <div class="form-group">
+                <input id="q" name="q" placeholder="¿Qué necesitas?" autocomplete="off" autocorrect="false" spellcheck="false" type="search">
+            </div>
+            <div id="hits"></div>
+        </form>
+    </header>
+
+    <main>
+        
+        <!-- Seccion Startups -->
+        <div class="row">
+        <div class="col-md-12" class="section_1">
+            <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="{%static 'img/logo-centraal.png'%}">
+                    <article>
+                        <a href="#">Servicio 1</a>
+                            <br>
+                        <a href="#">Servicio 2</a>
+                            <br>
+                        <a href="#">Servicio 3</a>
+                    </article>
+            </section>
+
+            <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="{%static 'img/logoStartupLab.png'%}">
+                    <article>
+                        <a href="#">Servicio 1</a>
+                            <br>
+                        <a href="#">Servicio 2</a>
+                            <br>
+                        <a href="#">Servicio 3</a>
+                    </article>
+            </section>
+
+            <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="{%static 'img/logorappi.jpeg'%}">
+                    <article>
+                        <a href="#">Servicio 1</a>
+                            <br>
+                        <a href="#">Servicio 2</a>
+                            <br>
+                        <a href="#">Servicio 3</a>
+                    </article>
+            </section>
+
+            <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="{%static 'img/logo-unikodf.png'%}">
+                    <article>
+                        <a href="#">Servicio 1</a>
+                            <br>
+                        <a href="#">Servicio 2</a>
+                            <br>
+                        <a href="#">Servicio 3</a>
+                    </article>
+            </section>
+        </div>
+            
+            <!--Seccion 2 de Listas-->
+
+<div class="col-md-12" class="section_2">
+            <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="{%static 'img/logoWayra.jpg'%}">
+                    <article>
+                        <a href="#">Servicio 1</a>
+                            <br>
+                        <a href="#">Servicio 2</a>
+                            <br>
+                        <a href="#">Servicio 3</a>
+                    </article>
+            </section>
+
+            <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="{%static 'img/logorappi.jpeg'%}">
+                    <article>
+                        <a href="#">Servicio 1</a>
+                            <br>
+                        <a href="#">Servicio 2</a>
+                            <br>
+                        <a href="#">Servicio 3</a>
+                    </article>
+            </section>
+
+            <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="{%static 'img/logoDev.png'%}">
+
+                    <article>
+                        <a href="#">Servicio 1</a>
+                            <br>
+                        <a href="#">Servicio 2</a>
+                            <br>
+                        <a href="#">Servicio 3</a>
+                    </article>
+            </section>
+
+            <section class="col-xs-6 col-sm-4 col-md-3">
+                <img class="logo_startup" src="{%static 'img/logocentral.png'%}">
+
+                    <article>
+                        <a href="#">Servicio 1</a>
+                            <br>
+                        <a href="#">Servicio 2</a>
+                            <br>
+                        <a href="#">Servicio 3</a>
+                    </article>
+            </section>
+        </div>
+    </div>    
+    <footer>
+        
+
+
+    </footer>
+
+
+
+</body>
+
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <script type="text/javascript" src="js/scripts.js"></script>
+
+    <!-- Aquí empieza Algolia -->
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script type="text/javascript">
+      function searchCallback(content) {
+        if (content.query !== $('#q').val()) {
+          // do not take out-dated answers into account
+          return;
+        }
+        if (content.hits.length === 0) {
+          // no results
+          $('#hits').empty();
+          return;
+        }
+        // Scan all hits and display them
+        var html = '';
+        for (var i = 0; i < content.hits.length; ++i) {
+          var hit = content.hits[i];
+          html += '<div class="hit" style="padding-bottom: 30px;">';
+          for (var attribute in hit._highlightResult) {
+            html += '<div class="attribute" style="border-bottom: 1px solid gray;">' +
+              hit._highlightResult[attribute].value +
+              '</div>';
+          }
+          html += '</div>';
+        }
+        $('#hits').html(html);
+      }
+      $(document).ready(function() {
+        var $inputfield = $('#q');
+        // Replace the following values by your ApplicationID and ApiKey.
+        var client = $.algolia.Client('O80RPQHCXY', '921726e718a0ae434ba52e6904caa6c4');
+        // Replace the following value by the name of the index you want to query.
+        var index = client.initIndex('Proveedor','Categoria', 'Startup');
+        $inputfield.keyup(function() {
+          index.search($inputfield.val(), { hitsPerPage: 5 })
+            .done(searchCallback)
+            .fail(function(content) { console.log('Error', content); });
+        }).focus().closest('form').on('submit', function() {
+          // on form submit, store the query string in the anchor
+          location.replace('#q=' + encodeURIComponent($inputfield.val()));
+          return false;
+        });
+        // check if there is a query in the anchor: http://example.org/#q=my+query
+        if (location.hash && location.hash.indexOf('#q=') === 0) {
+          var q = decodeURIComponent(location.hash.substring(3));
+          $inputfield.val(q).trigger('keyup');
+        }
+      });
+    </script>
+
+</body>
+
+</html>
